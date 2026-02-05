@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LeoOnCode — byologyPremium</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="stage">
+    <div class="center" id="center">
+      <div id="intro" class="intro">
+        <div class="line big" id="line1">LeoOnCode presents</div>
+        <div class="line big hidden" id="line2">byologyPremium</div>
+      </div>
+
+      <!-- Pages container (hidden until intro completes) -->
+      <div id="pages" class="pages hidden-panel" aria-live="polite">
+        <section id="page-apps" class="page page-active" data-page="apps" aria-hidden="false">
+          <h2 class="page-title">Apps</h2>
+          <div class="card-grid" id="apps-grid">
+            <!-- sample app cards -->
+            <article class="card"><div class="card-icon">A</div><div class="card-title">Productivity</div></article>
+            <article class="card"><div class="card-icon">N</div><div class="card-title">Notes</div></article>
+            <article class="card"><div class="card-icon">M</div><div class="card-title">Media</div></article>
+            <article class="card"><div class="card-icon">C</div><div class="card-title">Clock</div></article>
+          </div>
+        </section>
+
+        <section id="page-games" class="page" data-page="games" aria-hidden="true">
+          <h2 class="page-title">Games</h2>
+          <div class="card-grid">
+            <article class="card"><div class="card-icon">🎮</div><div class="card-title">Arcade</div></article>
+            <article class="card"><div class="card-icon">🧩</div><div class="card-title">Puzzle</div></article>
+            <article class="card"><div class="card-icon">🚀</div><div class="card-title">Space Run</div></article>
+            <article class="card"><div class="card-icon">🕹️</div><div class="card-title">Retro</div></article>
+          </div>
+        </section>
+
+        <section id="page-ai" class="page" data-page="ai" aria-hidden="true">
+          <h2 class="page-title">AI</h2>
+          <p class="muted">AI tools and assistants. Click "Open AI" in the left panel to open the chat widget (kept hidden until you choose to open it).</p>
+          <div class="ai-actions">
+            <button id="open-ai-btn" class="btn primary">Open AI</button>
+            <button id="ai-info-btn" class="btn">AI Info</button>
+          </div>
+        </section>
+
+        <section id="page-proxies" class="page" data-page="proxies" aria-hidden="true">
+          <h2 class="page-title">Proxies</h2>
+          <ul class="list">
+            <li>Proxy Manager</li>
+            <li>Proxy Monitor</li>
+            <li>Geo Proxies</li>
+            <li>Auto-rotate</li>
+          </ul>
+        </section>
+
+        <section id="page-others" class="page" data-page="others" aria-hidden="true">
+          <h2 class="page-title">Others</h2>
+          <p class="muted">Miscellaneous tools and diagnostics.</p>
+          <div class="card-grid">
+            <article class="card"><div class="card-icon">⚙️</div><div class="card-title">Settings</div></article>
+            <article class="card"><div class="card-icon">📁</div><div class="card-title">Files</div></article>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- Left sidebar (revealed after intro) -->
+    <aside id="left-panel" class="left-panel hidden" aria-label="Navigation">
+      <nav class="panel-nav" aria-label="App categories">
+        <button class="panel-item" data-type="apps"><div class="item-icon"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="8" height="8" rx="2"/><rect x="14" y="2" width="8" height="8" rx="2"/><rect x="2" y="14" width="8" height="8" rx="2"/><rect x="14" y="14" width="8" height="8" rx="2"/></svg></div><span class="item-label">Apps</span></button>
+
+        <button class="panel-item" data-type="games"><div class="item-icon"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"/><circle cx="8.5" cy="12" r="1.2"/><path d="M15 11h2v2h-2z"/></svg></div><span class="item-label">Games</span></button>
+
+        <button class="panel-item" data-type="ai"><div class="item-icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="10" r="1.2"/><circle cx="15" cy="10" r="1.2"/><path d="M8 15c1 1.2 3 1.2 4 0"/></svg></div><span class="item-label">AI</span></button>
+
+        <button class="panel-item" data-type="proxies"><div class="item-icon"><svg viewBox="0 0 24 24"><circle cx="7" cy="7" r="3"/><circle cx="17" cy="7" r="3"/><circle cx="12" cy="17" r="3"/></svg></div><span class="item-label">Proxies</span></button>
+
+        <button class="panel-item" data-type="others"><div class="item-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6 .5-4.5 4 1 6L12 16l-5.5 2.5 1-6L3 8.5 9 8z"/></svg></div><span class="item-label">Others</span></button>
+      </nav>
+
+      <div class="panel-bottom">
+        <button id="toggle-ai" class="panel-ai-toggle" aria-pressed="false">
+          <svg viewBox="0 0 24 24" class="ai-toggle-icon"><path d="M12 2l3 6 6 .5-4.5 4 1 6L12 16l-5.5 2.5 1-6L3 8.5 9 8z"></path></svg>
+          <span id="toggle-ai-label">Open AI</span>
+        </button>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Chat widget (hidden by default) -->
+  <div id="chat-widget" class="chat-widget hidden" role="dialog" aria-label="AI chat">
+    <div class="chat-header">
+      <div class="chat-title">AI Helper</div>
+      <button id="chat-close" class="chat-close" aria-label="Close chat">✕</button>
+    </div>
+    <div class="chat-body" id="chat-body">
+      <div class="bot-msg">Hello — the chat is offline in this demo. Use a secure server to enable it.</div>
+    </div>
+    <form id="chat-form" class="chat-form" autocomplete="off">
+      <input id="prompt" placeholder="Ask something..." />
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
